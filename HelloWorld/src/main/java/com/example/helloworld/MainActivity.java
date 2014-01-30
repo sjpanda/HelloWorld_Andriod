@@ -13,6 +13,13 @@ import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
 
 public class MainActivity extends ActionBarActivity {
     public final static String EXTRA_MESSAGE = "com.example.helloworld.MESSAGE";
@@ -38,9 +45,11 @@ public class MainActivity extends ActionBarActivity {
 
         tv = new TextView(this);
         sb = new StringBuilder();
-        call();
+        Toast.makeText(this.getApplicationContext(),"my message",500).show();
+       // call();
         tv.setText(sb.toString());
         setContentView(tv);
+
 
 
 
@@ -61,7 +70,8 @@ public class MainActivity extends ActionBarActivity {
 
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
 
-            request.addProperty("Name", "Qing");
+            request.addProperty("identifiant", "toto");
+            request.addProperty("motDePasse", "toto");
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
                     SoapEnvelope.VER11);
@@ -84,7 +94,6 @@ public class MainActivity extends ActionBarActivity {
         }
 
     }
-}
 
 
     @Override
